@@ -65,6 +65,76 @@
                 });
                 document.getElementById('output').innerHTML = styledWords.join(' ');
             });
+
+            document.getElementById('goButton').addEventListener('click', function() {
+                const outputDiv = document.getElementById('output');
+                const narateButton = document.createElement('button');
+                narateButton.textContent = 'Narrate';
+                narateButton.style.marginLeft = '10px';
+                narateButton.addEventListener('click', function() {
+                    const text = document.getElementById('inputText').value;
+                    fetch('https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}', {
+                        method: 'POST',
+                        headers: {
+                            'xi-api-key': '{YOUR_API_KEY}',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            text: text,
+                            model_id: 'eleven_monolingual_v1'
+                        })
+                    })
+                    .then(response => response.arrayBuffer())
+                    .then(buffer => {
+                        const audio = new Audio(URL.createObjectURL(new Blob([buffer], {type: 'audio/mpeg'})));
+                        audio.play();
+                    });
+                });
+                outputDiv.appendChild(narateButton);
+            });            document.getElementById('goButton').addEventListener('click', function() {
+                const inputText = document.getElementById('inputText').value;
+                const words = inputText.split(' ');
+                const styledWords = words.map(word => {
+                    if (isColorName(word)) {
+                        return `<span style="color: ${word};">${word}</span>`;
+                    }
+                    return word;
+                });
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML = styledWords.join(' ');
+                
+                // Create narrate button only once
+                if (!outputDiv.querySelector('.narateButton')) {
+                    const narateButton = document.createElement('button');
+                    narateButton.className = 'narateButton';
+                    narateButton.textContent = 'Narrate';
+                    narateButton.style.marginLeft = '10px';
+                    narateButton.addEventListener('click', function() {
+                        const text = document.getElementById('inputText').value;
+                        fetch('https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID', {
+                            method: 'POST',
+                            headers: {
+                                'xi-api-key': 'YOUR_API_KEY',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                text: text,
+                                model_id: 'eleven_monolingual_v1'
+                            })
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('API request failed');
+                            return response.arrayBuffer();
+                        })
+                        .then(buffer => {
+                            const audio = new Audio(URL.createObjectURL(new Blob([buffer], {type: 'audio/mpeg'})));
+                            audio.play();
+                        })
+                        .catch(error => console.error('Narration error:', error));
+                    });
+                    outputDiv.appendChild(narateButton);
+                }
+            });
         </script>
         
             
