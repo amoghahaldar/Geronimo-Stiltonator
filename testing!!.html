@@ -48,50 +48,13 @@
         <button id="goButton">Go</button>
         <div id="output" style="margin-top: 20px;"></div>
 
-        <script>
+                <script>
             function isColorName(word) {
                 const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange', 'black', 'white', 'gray', 'grey', 'brown', 'cyan', 'magenta', 'lime', 'navy', 'teal', 'olive', 'coral', 'gold', 'silver', 'lightblue', 'lightgreen', 'lightgray', 'lightpink'];
                 return colors.includes(word.toLowerCase());
             }
 
             document.getElementById('goButton').addEventListener('click', function() {
-                const inputText = document.getElementById('inputText').value;
-                const words = inputText.split(' ');
-                const styledWords = words.map(word => {
-                    if (isColorName(word)) {
-                        return `<span style="color: ${word};">${word}</span>`;
-                    }
-                    return word;
-                });
-                document.getElementById('output').innerHTML = styledWords.join(' ');
-            });
-
-            document.getElementById('goButton').addEventListener('click', function() {
-                const outputDiv = document.getElementById('output');
-                const narateButton = document.createElement('button');
-                narateButton.textContent = 'Narrate';
-                narateButton.style.marginLeft = '10px';
-                narateButton.addEventListener('click', function() {
-                    const text = document.getElementById('inputText').value;
-                    fetch('https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}', {
-                        method: 'POST',
-                        headers: {
-                            'xi-api-key': '{YOUR_API_KEY}',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            text: text,
-                            model_id: 'eleven_monolingual_v1'
-                        })
-                    })
-                    .then(response => response.arrayBuffer())
-                    .then(buffer => {
-                        const audio = new Audio(URL.createObjectURL(new Blob([buffer], {type: 'audio/mpeg'})));
-                        audio.play();
-                    });
-                });
-                outputDiv.appendChild(narateButton);
-            });            document.getElementById('goButton').addEventListener('click', function() {
                 const inputText = document.getElementById('inputText').value;
                 const words = inputText.split(' ');
                 const styledWords = words.map(word => {
@@ -111,10 +74,10 @@
                     narateButton.style.marginLeft = '10px';
                     narateButton.addEventListener('click', function() {
                         const text = document.getElementById('inputText').value;
-                        fetch('https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID', {
+                        fetch('https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0', {
                             method: 'POST',
                             headers: {
-                                'xi-api-key': 'YOUR_API_KEY',
+                                'xi-api-key': 'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1',
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
@@ -134,6 +97,7 @@
                     });
                     outputDiv.appendChild(narateButton);
                 }
+                
             });
         </script>
         
