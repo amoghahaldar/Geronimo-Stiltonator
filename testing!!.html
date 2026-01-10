@@ -61,7 +61,7 @@
                     if (isColorName(word)) {
                         return `<span style="color: ${word};">${word}</span>`;
                     }
-                    return word.startsWith('b') || word.startsWith('B') ? `<span style="color: pink;">${word}</span>` : word;
+                    return word;
                 });
                 document.getElementById('output').innerHTML = styledWords.join(' ');
             });
