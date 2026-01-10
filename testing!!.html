@@ -43,6 +43,24 @@
             <div style="margin-left: 40px;">Hello</div>
         </div>
         <p>explain what it does!@UIRF#)(RU#*)!</p>
+        <label for="inputText">Input text to stiltonify!</label>
+        <textarea id="inputText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
+        <button id="goButton">Go</button>
+        <div id="output" style="margin-top: 20px;"></div>
+
+        <script>
+            document.getElementById('goButton').addEventListener('click', function() {
+            const inputText = document.getElementById('inputText').value;
+            const words = inputText.split(' ');
+            const styledWords = words.map(word => {
+                return word.startsWith('b') || word.startsWith('B') ? `<span style="color: pink;">${word}</span>` : word;
+            });
+            document.getElementById('output').innerHTML = styledWords.join(' ');
+            });
+        </script>
+        
+            
+        </script>
     </main>
 </body>
 </html>
