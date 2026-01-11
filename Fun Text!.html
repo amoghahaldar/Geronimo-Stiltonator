@@ -34,77 +34,83 @@
     }
 
     /* Grammar highlighting */
-    .noun-style { font-family: 'Impact', sans-serif; color: #0056b3; text-transform: uppercase; display: inline-block; }
-    .adj-style { font-family: 'Comic Sans MS', cursive; color: #e91e63; font-size: 1.2em; font-weight: bold; display: inline-block; transform: rotate(-2deg); margin: 0 2px; }
-    .verb-style { font-family: 'Georgia', serif; color: #2e7d32; font-style: italic; border-bottom: 2px wavy #ffeb3b; }
-    .pronoun-style { color: teal; font-style: italic; }
-    .adverb-style { color: purple; font-weight: bold; }
-    .preposition-style { color: brown; text-decoration: underline; }
-    .conjunction-style { color: darkorange; font-weight: bold; }
+    .noun-style { font-family: 'Impact', sans-serif; color: #0056b3; text-transform: uppercase; display:inline-block; }
+    .adj-style { font-family: 'Comic Sans MS', cursive; color: #e91e63; font-size:1.2em; font-weight:bold; display:inline-block; transform:rotate(-2deg); margin:0 2px; }
+    .verb-style { font-family: 'Georgia', serif; color:#2e7d32; font-style:italic; border-bottom:2px wavy #ffeb3b; }
 
     /* Animations */
-    .shake-anim { display: inline-block; animation: shake 0.2s infinite; }
-    @keyframes shake { 0% { transform: translate(1px,1px) rotate(0deg); } 50% { transform: translate(-1px,-2px) rotate(-1deg); } 100% { transform: translate(1px,1px) rotate(0deg); } }
+    .shake-anim { display:inline-block; animation: shake 0.2s infinite; }
+    @keyframes shake {
+        0% { transform: translate(1px,1px) rotate(0deg); }
+        50% { transform: translate(-1px,-2px) rotate(-1deg); }
+        100% { transform: translate(1px,1px) rotate(0deg); }
+    }
 
     /* Extra word highlights */
     .small-highlight { color: purple; font-size: 0.7em; }
-    .big-highlight { color: orange; font-weight: bold; text-transform: uppercase; font-size: 1.5em; }
+    .big-highlight { color: orange; font-weight: bold; text-transform: uppercase; font-size:1.5em; }
     .fast-highlight { color: green; font-style: italic; }
-    .scary-highlight { color: red; font-family: 'Creepster', cursive; font-size: 1.2em; text-decoration: underline; }
+    .scary-highlight { color: red; font-family: 'Creepster', cursive; font-size:1.2em; text-decoration: underline; }
 
-    /* Output box */
-    #output { border: 1px solid #ccc; padding: 10px; min-height: 50px; white-space: pre-wrap; margin-top: 20px; }
-    textarea { width: 100%; box-sizing: border-box; font-size: 16px; }
-    label { display: block; margin-top: 10px; margin-bottom: 5px; }
-    #teachingArea { display: none; margin-top: 10px; background-color: #e0ffe0; padding: 10px; border-radius: 10px; }
+    #output { border:1px solid #ccc; padding:10px; min-height:50px; white-space: pre-wrap; }
+    textarea { width:100%; box-sizing:border-box; font-size:16px; }
+    label { display:block; margin-top:10px; margin-bottom:5px; }
 </style>
 </head>
+
 <body>
 <header>
     <h1>🐁🧀Gibberishmo Stiltonator🧀🐁</h1>
 </header>
+
 <main>
-    <div style="font-size: 30px; color: lightblue;">
-        <div style="margin-left: 0px;">Hello</div>
-        <div style="margin-left: 0px; text-align: center;">
+    <div style="font-size:30px; color:lightblue;">
+        <div style="margin-left:0px;">Hello! Squeek!</div>
+        <div style="margin-left:0px; text-align:center;">
             🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀
         </div>
     </div>
-    <p style="font-size: 17px; color: rgb(84, 76, 63);">
+
+    <p style="font-size:17px; color: rgb(84,76,63);">
         Ever wish you could read your educational texts in a more appealing way?
     </p>
-    <p style="font-size: 17px; color: rgb(84, 76, 63);">
+    <p style="font-size:17px; color: rgb(84,76,63);">
         Do you love Geronimo Stilton with a passion?
     </p>
-    <p style="font-size: 17px; color: rgb(84, 76, 63);">
-        Well, this textbox will allow you to reconfigure your texts into the font of your childhood by emphasizing and highlighting key concepts just like in a classic Geronimo Stilton novel! (He'll even read it out to you!)
+    <p style="font-size:17px; color: rgb(84,76,63);">
+        Well, this textbox will allow you to reconfigure your texts into the font of your childhood by emphasizing and highlighting key concepts just like in a classic Geronimo Stilton novel!
     </p>
 
     <label>
-        <input type="checkbox" id="teachingMode"> <span style="color: green;">🍎Teaching Mode - categorizes words without distracting features!</span>
+        <input type="checkbox" id="teachingMode">
+        <span style="color:green;">🍎 Teaching Mode - categorize words without distracting features!</span>
     </label>
 
-    <!-- Teaching Mode word entry (now above input box) -->
-    <div id="teachingArea">
-        <p>Select categories to categorize:</p>
+    <label for="inputText">Input text to Stiltonify!</label>
+    <textarea id="inputText" rows="4" placeholder="Type your text here..."></textarea>
+    <button id="goButton">Go</button>
+
+    <div id="output" style="margin-top:20px;"></div>
+
+    <!-- Teaching Mode Section -->
+    <div id="teachingArea" style="display:none; margin-top:20px; padding:15px; border:2px solid #4caf50; border-radius:12px; background:#f0fff4;">
+        <h3 style="color:green;">🍎 Teaching Mode: Categorize Words</h3>
+        <p>Select categories to practice:</p>
         <label><input type="checkbox" class="categoryCheckbox" value="nouns"> Nouns</label>
+        <label><input type="checkbox" class="categoryCheckbox" value="pronouns"> Pronouns</label>
         <label><input type="checkbox" class="categoryCheckbox" value="adjectives"> Adjectives</label>
         <label><input type="checkbox" class="categoryCheckbox" value="verbs"> Verbs</label>
-        <label><input type="checkbox" class="categoryCheckbox" value="pronouns"> Pronouns</label>
         <label><input type="checkbox" class="categoryCheckbox" value="adverbs"> Adverbs</label>
         <label><input type="checkbox" class="categoryCheckbox" value="prepositions"> Prepositions</label>
         <label><input type="checkbox" class="categoryCheckbox" value="conjunctions"> Conjunctions</label>
-        <div id="categoryInputs"></div>
+
+        <div id="categoryInputs" style="margin-top:10px;"></div>
+
         <button id="checkAnswers">Check Answers</button>
         <button id="resetTeaching">Reset</button>
-        <p id="feedback"></p>
+
+        <div id="feedback" style="margin-top:10px; font-weight:bold;"></div>
     </div>
-
-    <label for="inputText">Input text to Stiltonify!</label>
-    <textarea id="inputText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
-    <button id="goButton">Go</button>
-
-    <div id="output"></div>
 
 <script>
 function isColorName(word){
@@ -141,102 +147,48 @@ function highlightExtraWords(outputDiv){
     outputDiv.innerHTML=text;
 }
 
-const categoryClassMap = {
-    nouns:'noun-style',
-    adjectives:'adj-style',
-    verbs:'verb-style',
-    pronouns:'pronoun-style',
-    adverbs:'adverb-style',
-    prepositions:'preposition-style',
-    conjunctions:'conjunction-style'
-};
-
-document.getElementById('goButton').addEventListener('click',()=>{
+document.getElementById('goButton').addEventListener('click',function(){
     const inputText=document.getElementById('inputText').value;
     if(!inputText) return;
 
-    const doc=nlp(inputText);
-    const categories={
-        nouns:doc.nouns().out('array').map(w=>w.toLowerCase()),
-        adjectives:doc.adjectives().out('array').map(w=>w.toLowerCase()),
-        verbs:doc.verbs().out('array').map(w=>w.toLowerCase()),
-        pronouns:doc.pronouns().out('array').map(w=>w.toLowerCase()),
-        adverbs:doc.adverbs().out('array').map(w=>w.toLowerCase()),
-        prepositions:doc.prepositions().out('array').map(w=>w.toLowerCase()),
-        conjunctions:doc.conjunctions().out('array').map(w=>w.toLowerCase())
-    };
-
-    const teachingMode=document.getElementById('teachingMode').checked;
-    const selectedCategories=teachingMode ?
-        Array.from(document.querySelectorAll('.categoryCheckbox:checked')).map(c=>c.value)
-        : Object.keys(categories);
+    let doc=nlp(inputText);
+    const nouns=doc.nouns().out('array').map(w=>w.toLowerCase());
+    const adjectives=doc.adjectives().out('array').map(w=>w.toLowerCase());
+    const verbs=doc.verbs().out('array').map(w=>w.toLowerCase());
+    const pronouns=doc.pronouns().out('array').map(w=>w.toLowerCase());
+    const adverbs=doc.adverbs().out('array').map(w=>w.toLowerCase());
+    const prepositions=doc.prepositions().out('array').map(w=>w.toLowerCase());
+    const conjunctions=doc.conjunctions().out('array').map(w=>w.toLowerCase());
 
     const words=inputText.split(/\s+/);
     const styledWords=words.map(word=>{
         const clean=word.toLowerCase().replace(/[^\w]/g,'');
         if(clean==='shake'||clean==='shaky') return `<span class="shake-anim adj-style">${word}</span>`;
         if(isColorName(clean)) return `<span style="color:${clean}; font-weight:bold;">${word}</span>`;
-        for(const cat of selectedCategories){
-            if(categories[cat].includes(clean)){
-                return `<span class="${categoryClassMap[cat]}">${word}</span>`;
-            }
-        }
+        if(adjectives.includes(clean)) return `<span class="adj-style">${word}</span>`;
+        if(nouns.includes(clean)) return `<span class="noun-style">${word}</span>`;
+        if(verbs.includes(clean)) return `<span class="verb-style">${word}</span>`;
         return word;
     });
 
     const outputDiv=document.getElementById('output');
     outputDiv.innerHTML=`<div id="textContent">${styledWords.join(' ')}</div>`;
     highlightExtraWords(document.getElementById('textContent'));
-
-    // Narrate button
-    const narrateButton=document.createElement('button');
-    narrateButton.className='narrateButton';
-    narrateButton.textContent='Narrate';
-    narrateButton.style.display='block';
-    narrateButton.style.marginTop='15px';
-    narrateButton.onclick=function(){
-        const text=document.getElementById('inputText').value;
-        narrateButton.textContent='Generating Audio...';
-        narrateButton.disabled=true;
-
-        fetch('https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0',{
-            method:'POST',
-            headers:{
-                'xi-api-key':'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({ text: text, model_id: 'eleven_monolingual_v1' })
-        })
-        .then(response=>{
-            if(!response.ok) throw new Error('API request failed (Check your key or credits)');
-            return response.arrayBuffer();
-        })
-        .then(buffer=>{
-            const audio=new Audio(URL.createObjectURL(new Blob([buffer],{type:'audio/mpeg'})));
-            audio.play();
-            narrateButton.textContent='Narrate';
-            narrateButton.disabled=false;
-        })
-        .catch(error=>{
-            console.error('Narration error:',error);
-            alert("Error: "+error.message);
-            narrateButton.textContent='Narrate';
-            narrateButton.disabled=false;
-        });
-    };
-    outputDiv.appendChild(narrateButton);
 });
 
-// Teaching Mode toggle
+// Show teaching area
 document.getElementById('teachingMode').addEventListener('change',()=>{
-    document.getElementById('teachingArea').style.display=document.getElementById('teachingMode').checked?'block':'none';
+    const area=document.getElementById('teachingArea');
+    area.style.display=document.getElementById('teachingMode').checked?'block':'none';
     renderCategoryInputs();
 });
 
+// Render input boxes for selected categories
 function renderCategoryInputs(){
     const container=document.getElementById('categoryInputs');
     container.innerHTML='';
-    document.querySelectorAll('.categoryCheckbox').forEach(cb=>{
+    const checkboxes=document.querySelectorAll('.categoryCheckbox');
+    checkboxes.forEach(cb=>{
         if(cb.checked){
             const label=document.createElement('label');
             label.textContent=cb.value.charAt(0).toUpperCase()+cb.value.slice(1);
@@ -250,6 +202,7 @@ function renderCategoryInputs(){
     });
 }
 
+// Update input boxes when categories are toggled
 document.querySelectorAll('.categoryCheckbox').forEach(cb=>{
     cb.addEventListener('change', renderCategoryInputs);
 });
@@ -257,6 +210,7 @@ document.querySelectorAll('.categoryCheckbox').forEach(cb=>{
 function parseWords(text){ return text.split(',').map(w=>w.trim().toLowerCase()).filter(Boolean); }
 function getTextWordSet(){ return new Set(document.getElementById('inputText').value.toLowerCase().split(/\s+/).map(w=>w.replace(/[^\w]/g,'')).filter(Boolean)); }
 
+// Check answers
 document.getElementById('checkAnswers').addEventListener('click',()=>{
     const set=getTextWordSet();
     let score=0,total=0;
@@ -274,6 +228,7 @@ document.getElementById('checkAnswers').addEventListener('click',()=>{
     feedback.style.color=score===total?'green':'orange';
 });
 
+// Reset teaching inputs
 document.getElementById('resetTeaching').addEventListener('click',()=>{
     document.querySelectorAll('#categoryInputs textarea').forEach(t=>t.value='');
     document.getElementById('feedback').textContent='';
