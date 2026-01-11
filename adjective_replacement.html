@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Highlighter with Scary Font</title>
+
+    <!-- Link to Google Font Creepster for scary words -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
+    <style>
+        /* Styles for each category */
+        .small-highlight {
+            color: purple;
+            font-size: 0.7em; /* smaller font for small words */
+        }
+        .big-highlight {
+            color: orange;
+            font-weight: bold;
+            text-transform: uppercase; /* capitalizes big words */
+            font-size: 1.5em; /* larger font for big words */
+        }
+        .fast-highlight {
+            color: green;
+            font-style: italic;
+        }
+        .scary-highlight {
+            color: red;
+            font-family: 'Creepster', cursive; /* scary font */
+            font-size: 1.2em;
+            text-decoration: underline;
+        }
+
+        /* Output box */
+        #outputText {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 50px;
+            white-space: pre-wrap; /* preserve line breaks */
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Highlighter</h1>
+    <p>Type your text below. Click the button when you are done typing to highlight certain words.</p>
+
+    <textarea id="inputText" rows="8" placeholder="Type your text here..."></textarea>
+    <br><br>
+    <button onclick="highlightText()">Highlight Words</button>
+
+    <h2>Output:</h2>
+    <div id="outputText"></div>
+
+    <script>
+        // Words and their styles
+        const wordMap = {
+            // Small synonyms
+            "small": "<span class='small-highlight'>small</span>",
+            "tiny": "<span class='small-highlight'>tiny</span>",
+            "little": "<span class='small-highlight'>little</span>",
+            "miniscule": "<span class='small-highlight'>miniscule</span>",
+            "minute": "<span class='small-highlight'>minute</span>",
+
+            // Big synonyms
+            "big": "<span class='big-highlight'>big</span>",
+            "huge": "<span class='big-highlight'>huge</span>",
+            "massive": "<span class='big-highlight'>massive</span>",
+
+            // Fast synonyms
+            "fast": "<span class='fast-highlight'>fast</span>",
+            "quick": "<span class='fast-highlight'>quick</span>",
+            "rapid": "<span class='fast-highlight'>rapid</span>",
+
+            // Scary synonyms
+            "scary": "<span class='scary-highlight'>scary</span>",
+            "frightening": "<span class='scary-highlight'>frightening</span>",
+            "spooky": "<span class='scary-highlight'>spooky</span>"
+        };
+
+        const inputBox = document.getElementById("inputText");
+        const outputBox = document.getElementById("outputText");
+
+        // Escape regex special characters
+        function escapeRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Function to highlight words
+        function highlightText() {
+            let text = inputBox.value;
+
+            for (let word in wordMap) {
+                const regex = new RegExp("\\b" + escapeRegex(word) + "\\b", "gi");
+                text = text.replace(regex, wordMap[word]);
+            }
+
+            outputBox.innerHTML = text;
+        }
+    </script>
+</body>
+</html>
