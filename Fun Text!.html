@@ -79,10 +79,12 @@
     label { display: block; margin-top: 10px; margin-bottom: 5px; }
 </style>
 </head>
+
 <body>
 <header>
     <h1>🐁🧀Gibberishmo Stiltonator🧀🐁</h1>
 </header>
+
 <main>
     <div style="font-size: 30px; color: lightblue;">
         <div style="margin-left: 0px;">Hello</div>
@@ -90,6 +92,7 @@
             🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀
         </div>
     </div>
+
     <p style="font-size: 17px; color: rgb(84, 76, 63);">
         Ever wish you could read your educational texts in a more appealing way?
     </p>
@@ -101,12 +104,36 @@
     </p>
 
     <label>
-        <input type="checkbox" id="teachingMode"> <span style="color: green;">🍎Teaching Mode - categorizes nouns, adjectives, and verbs without distracting features! 
+        <input type="checkbox" id="teachingMode">
+        <span style="color: green;">🍎 Teaching Mode - categorize nouns, adjectives, and verbs without distracting features!</span>
     </label>
+
     <label for="inputText">Input text to Stiltonify!</label>
-    <textarea id="inputText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
+    <textarea id="inputText" rows="4" placeholder="Type your text here..."></textarea>
     <button id="goButton">Go</button>
+
     <div id="output" style="margin-top: 20px;"></div>
+
+    <!-- Teaching Mode Section -->
+    <div id="teachingArea" style="display:none; margin-top:20px; padding:15px; border:2px solid #4caf50; border-radius:12px; background:#f0fff4;">
+        <h3 style="color:green;">🍎 Teaching Mode: Categorize Words</h3>
+        <p><strong>Only words that appear in the text above will be counted.</strong><br>
+        Separate words with commas.</p>
+
+        <label>Pronouns</label>
+        <textarea id="pronounInput" rows="3"></textarea>
+
+        <label>Adjectives</label>
+        <textarea id="adjectiveInput" rows="3"></textarea>
+
+        <label>Verbs</label>
+        <textarea id="verbInput" rows="3"></textarea>
+
+        <button id="checkAnswers">Check Answers</button>
+        <button id="resetTeaching">Reset</button>
+
+        <div id="feedback" style="margin-top:10px; font-weight:bold;"></div>
+    </div>
 
 <script>
 function isColorName(word) {
@@ -114,22 +141,21 @@ function isColorName(word) {
     return colors.includes(word.toLowerCase());
 }
 
-// Extra words to highlight
 const wordMap = {
-    small: "<span class='small-highlight'>small</span>",
-    tiny: "<span class='small-highlight'>tiny</span>",
-    little: "<span class='small-highlight'>little</span>",
-    miniscule: "<span class='small-highlight'>miniscule</span>",
-    minute: "<span class='small-highlight'>minute</span>",
-    big: "<span class='big-highlight'>big</span>",
-    huge: "<span class='big-highlight'>huge</span>",
-    massive: "<span class='big-highlight'>massive</span>",
-    fast: "<span class='fast-highlight'>fast</span>",
-    quick: "<span class='fast-highlight'>quick</span>",
-    rapid: "<span class='fast-highlight'>rapid</span>",
-    scary: "<span class='scary-highlight'>scary</span>",
-    frightening: "<span class='scary-highlight'>frightening</span>",
-    spooky: "<span class='scary-highlight'>spooky</span>"
+    small:"<span class='small-highlight'>small</span>",
+    tiny:"<span class='small-highlight'>tiny</span>",
+    little:"<span class='small-highlight'>little</span>",
+    miniscule:"<span class='small-highlight'>miniscule</span>",
+    minute:"<span class='small-highlight'>minute</span>",
+    big:"<span class='big-highlight'>big</span>",
+    huge:"<span class='big-highlight'>huge</span>",
+    massive:"<span class='big-highlight'>massive</span>",
+    fast:"<span class='fast-highlight'>fast</span>",
+    quick:"<span class='fast-highlight'>quick</span>",
+    rapid:"<span class='fast-highlight'>rapid</span>",
+    scary:"<span class='scary-highlight'>scary</span>",
+    frightening:"<span class='scary-highlight'>frightening</span>",
+    spooky:"<span class='scary-highlight'>spooky</span>"
 };
 
 function escapeRegex(str) {
@@ -137,9 +163,7 @@ function escapeRegex(str) {
 }
 
 function highlightExtraWords(outputDiv) {
-    const teachingMode = document.getElementById('teachingMode').checked;
-    if (teachingMode) return; // Skip extra highlighting in teaching mode
-
+    if (document.getElementById('teachingMode').checked) return;
     let text = outputDiv.innerHTML;
     for (let word in wordMap) {
         const regex = new RegExp("\\b" + escapeRegex(word) + "\\b", "gi");
@@ -152,7 +176,6 @@ document.getElementById('goButton').addEventListener('click', function() {
     const inputText = document.getElementById('inputText').value;
     if (!inputText) return;
 
-    // Analyze text using compromise
     let doc = nlp(inputText);
     const nouns = doc.nouns().out('array').map(w => w.toLowerCase());
     const adjectives = doc.adjectives().out('array').map(w => w.toLowerCase());
@@ -163,59 +186,59 @@ document.getElementById('goButton').addEventListener('click', function() {
         const clean = word.toLowerCase().replace(/[^\w]/g, '');
 
         if (clean === 'shake' || clean === 'shaky') return `<span class="shake-anim adj-style">${word}</span>`;
-        if (isColorName(clean)) return `<span style="color:${clean}; font-weight:bold; font-size:1.1em;">${word}</span>`;
+        if (isColorName(clean)) return `<span style="color:${clean}; font-weight:bold;">${word}</span>`;
         if (adjectives.includes(clean)) return `<span class="adj-style">${word}</span>`;
         if (nouns.includes(clean)) return `<span class="noun-style">${word}</span>`;
         if (verbs.includes(clean)) return `<span class="verb-style">${word}</span>`;
-
         return word;
     });
 
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = `<div id="textContent">${styledWords.join(' ')}</div>`;
-
-    // Apply extra word highlighting if not in teaching mode
     highlightExtraWords(document.getElementById('textContent'));
+});
 
-    // Narrate button
-    const narrateButton = document.createElement('button');
-    narrateButton.className = 'narrateButton';
-    narrateButton.textContent = 'Narrate';
-    narrateButton.style.display = 'block';
-    narrateButton.style.marginTop = '15px';
+document.getElementById('teachingMode').addEventListener('change', () => {
+    document.getElementById('teachingArea').style.display =
+        document.getElementById('teachingMode').checked ? 'block' : 'none';
+});
 
-    narrateButton.onclick = function() {
-        const text = document.getElementById('inputText').value;
-        narrateButton.textContent = 'Generating Audio...';
-        narrateButton.disabled = true;
+function parseWords(text) {
+    return text.split(',').map(w => w.trim().toLowerCase()).filter(Boolean);
+}
 
-        fetch('https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0', {
-            method: 'POST',
-            headers: {
-                'xi-api-key': 'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ text: text, model_id: 'eleven_monolingual_v1' })
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('API request failed (Check your key or credits)');
-            return response.arrayBuffer();
-        })
-        .then(buffer => {
-            const audio = new Audio(URL.createObjectURL(new Blob([buffer], {type: 'audio/mpeg'})));
-            audio.play();
-            narrateButton.textContent = 'Narrate';
-            narrateButton.disabled = false;
-        })
-        .catch(error => {
-            console.error('Narration error:', error);
-            alert("Error: " + error.message);
-            narrateButton.textContent = 'Narrate';
-            narrateButton.disabled = false;
+function getTextWordSet() {
+    return new Set(
+        document.getElementById('inputText').value
+            .toLowerCase()
+            .split(/\s+/)
+            .map(w => w.replace(/[^\w]/g,''))
+            .filter(Boolean)
+    );
+}
+
+document.getElementById('checkAnswers').addEventListener('click', () => {
+    const set = getTextWordSet();
+    let score = 0, total = 0;
+
+    [['pronounInput','pronoun'],['adjectiveInput','adjective'],['verbInput','verb']]
+    .forEach(([id,type]) => {
+        parseWords(document.getElementById(id).value).forEach(word => {
+            total++;
+            if (set.has(word) && nlp(word)[type+'s']().out('array').length) score++;
         });
-    };
+    });
 
-    outputDiv.appendChild(narrateButton);
+    const feedback = document.getElementById('feedback');
+    feedback.textContent = total ? `Score: ${score} / ${total}` : 'Enter words from the text.';
+    feedback.style.color = score === total ? 'green' : 'orange';
+});
+
+document.getElementById('resetTeaching').addEventListener('click', () => {
+    pronounInput.value = '';
+    adjectiveInput.value = '';
+    verbInput.value = '';
+    feedback.textContent = '';
 });
 </script>
 </main>
