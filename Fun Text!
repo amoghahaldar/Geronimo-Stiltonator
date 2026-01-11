@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gibberishmo Stiltonator</title>
+    <script src="https://unpkg.com/compromise"></script>
+    
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: large;
+            margin: 0;
+            padding: 20px;
+            background-color: #faf29e;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        main {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+
+        .noun-style {
+            font-family: 'Impact', sans-serif;
+            color: #0056b3;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .adj-style {
+            font-family: 'Comic Sans MS', cursive;
+            color: #e91e63;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: inline-block;
+            transform: rotate(-2deg);
+            margin: 0 2px;
+        }   
+
+        .verb-style {
+            font-family: 'Georgia', serif;
+            color: #2e7d32;
+            font-style: italic;
+            border-bottom: 2px wavy #ffeb3b;
+        }
+
+        /* Special animations for specific words */
+        .shake-anim {
+            display: inline-block;
+            animation: shake 0.2s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            50% { transform: translate(-1px, -2px) rotate(-1deg); }
+            100% { transform: translate(1px, 1px) rotate(0deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gibberishmo Stiltonator</h1>
+    </header>
+    <main>
+        <div style="font-size: 30px; color: lightblue;">
+            <div style="margin-left: 0px;">Hello</div>
+            <div style="margin-left: 10px;">Hello</div>
+            <div style="margin-left: 20px;">Hello</div>
+            <div style="margin-left: 30px;">Hello</div>
+            <div style="margin-left: 40px;">Hello</div>
+        </div>
+        <p style="font-size: 17px; color: rgb(84, 76, 63);">Ever wish you could read your educational texts in a more appealing way?</p>
+        <p style="font-size: 17px; color: rgb(84, 76, 63);">Do you love Gironimo Stilton with a passion?</p>
+        <p style="font-size: 17px; color: rgb(84, 76, 63);">Well, this textbox will allow you to reconfigure your texts into the font of your childhood by emphasizing and highlighting key concepts just like in a classic Geronimo Stilton novel! (He'll even read it out to you!)</p>
+        <label for="inputText">Input text to Stiltonify!</label>
+        <textarea id="inputText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
+        <button id="goButton">Go</button>
+        <div id="output" style="margin-top: 20px;"></div>
+
+                <script>
+            function isColorName(word) {
+                const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange', 'black', 'white', 'gray', 'grey', 'brown', 'cyan', 'magenta', 'lime', 'navy', 'teal', 'olive', 'coral', 'gold', 'silver', 'lightblue', 'lightgreen', 'lightgray', 'lightpink'];
+                return colors.includes(word.toLowerCase());
+            }
+
+            document.getElementById('goButton').addEventListener('click', function() {
+                const inputText = document.getElementById('inputText').value;
+                if (!inputText) return;
+
+                // AI analyze text
+                let doc = nlp(inputText);
+                const nouns = doc.nouns().out('array').map(w => w.toLowerCase());
+                const adjectives = doc.adjectives().out('array').map(w => w.toLowerCase());
+                const verbs = doc.verbs().out('array').map(w => w.toLowerCase());
+                
+                const words = inputText.split(/\s+/);
+                const styledWords = words.map(word => {
+                    const clean = word.toLowerCase().replace(/[^\w]/g, '');
+
+                    // Check for specific animations
+                    if (clean === 'shake' || clean === 'shaky') {
+                        return `<span class="shake-anim adj-style">${word}</span>`;
+                    }
+                    // Check for colours
+                    if (isColorName(clean)) {
+                        return `<span style="color: ${clean}; font-weight: bold; font-size: 1.1em;">${word}</span>`;
+                    }
+                    // AI-driven styling
+                    if (adjectives.includes(clean)) {
+                     return `<span class="adj-style">${word}</span>`;
+                    } 
+                    if (nouns.includes(clean)) {
+                        return `<span class="noun-style">${word}</span>`;
+                    }
+                    if (verbs.includes(clean)) {
+                        return `<span class="verb-style">${word}</span>`;
+                    }
+
+                    return word;
+                });
+
+                const outputDiv = document.getElementById('output');
+                
+                // Create a container for the text so we don't overwrite the button
+                outputDiv.innerHTML = `<div id="textContent">${styledWords.join(' ')}</div>`;
+                
+                // Narrate Button Logic
+                const narateButton = document.createElement('button');
+                narateButton.className = 'narateButton';
+                narateButton.textContent = 'Narrate';
+                narateButton.style.display = 'block';
+                narateButton.style.marginTop = '15px';
+
+                narateButton.onclick = function() {
+                    // Create narrate button only once
+                    const text = document.getElementById('inputText').value;
+
+                    // Visual feedback that it's working
+                    narateButton.textContent = 'Generating Audio...';
+                    narateButton.disabled = true;
+
+                    fetch('https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0', {
+                    method: 'POST',
+                    headers: {
+                        'xi-api-key': 'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        model_id: 'eleven_monolingual_v1'
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('API request failed (Check your key or credits)');
+                    return response.arrayBuffer();
+                })
+                .then(buffer => {
+                    const audio = new Audio(URL.createObjectURL(new Blob([buffer], {type: 'audio/mpeg'})));
+                    audio.play();
+                    narateButton.textContent = 'Narrate';
+                    narateButton.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Narration error:', error);
+                    alert("Error: " + error.message);
+                    narateButton.textContent = 'Narrate';
+                    narateButton.disabled = false;
+                });
+            };
+
+            outputDiv.appendChild(narateButton);
+        });
+</script>
+</body>
+</html>
