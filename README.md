@@ -1,2 +1,2 @@
 # Geronimo Stilton
-An app to review, modify, and customize websites containing dense text and jargon. Allows readers to change the font, color and spacing of the text. Uses AI to "highlight" key words and phrases.
+This will allow you to reconfigure your texts into the font of your childhood by emphasizing and highlighting key words just like in a classic Geronimo Stilton novel!
