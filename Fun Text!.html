@@ -11,35 +11,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
 <style>
-    body { font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: large; margin:0; padding:20px; background-color:#faf29e; }
-    header { background-color:#333; color:white; padding:20px; text-align:center; border-radius:20px; }
-    h1 { margin:0; }
-    main { background-color:white; padding:20px; margin-top:20px; border-radius:20px; }
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: large;
+        margin: 0;
+        padding: 20px;
+        background-color: #faf29e;
+    }
+    header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 20px;
+    }
+    h1 { margin: 0; }
+    main {
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
 
     /* Grammar highlighting */
-    .noun-style { font-family:'Impact',sans-serif; color:#0056b3; text-transform:uppercase; display:inline-block; }
-    .adj-style { font-family:'Comic Sans MS',cursive; color:#e91e63; font-size:1.2em; font-weight:bold; display:inline-block; transform:rotate(-2deg); margin:0 2px; }
-    .verb-style { font-family:'Georgia',serif; color:#2e7d32; font-style:italic; border-bottom:2px wavy #ffeb3b; }
+    .noun-style { font-family: 'Impact', sans-serif; color: #0056b3; text-transform: uppercase; display: inline-block; }
+    .adj-style { font-family: 'Comic Sans MS', cursive; color: #e91e63; font-size: 1.2em; font-weight: bold; display: inline-block; transform: rotate(-2deg); margin: 0 2px; }
+    .verb-style { font-family: 'Georgia', serif; color: #2e7d32; font-style: italic; border-bottom: 2px wavy #ffeb3b; }
     .pronoun-style { color: teal; font-style: italic; }
     .adverb-style { color: purple; font-weight: bold; }
     .preposition-style { color: brown; text-decoration: underline; }
     .conjunction-style { color: darkorange; font-weight: bold; }
 
     /* Animations */
-    .shake-anim { display:inline-block; animation:shake 0.2s infinite; }
-    @keyframes shake { 0% { transform:translate(1px,1px) rotate(0deg); } 50% { transform:translate(-1px,-2px) rotate(-1deg); } 100% { transform:translate(1px,1px) rotate(0deg); } }
+    .shake-anim { display: inline-block; animation: shake 0.2s infinite; }
+    @keyframes shake { 0% { transform: translate(1px,1px) rotate(0deg); } 50% { transform: translate(-1px,-2px) rotate(-1deg); } 100% { transform: translate(1px,1px) rotate(0deg); } }
 
     /* Extra word highlights */
-    .small-highlight { color: purple; font-size:0.7em; }
-    .big-highlight { color: orange; font-weight:bold; text-transform:uppercase; font-size:1.5em; }
+    .small-highlight { color: purple; font-size: 0.7em; }
+    .big-highlight { color: orange; font-weight: bold; text-transform: uppercase; font-size: 1.5em; }
     .fast-highlight { color: green; font-style: italic; }
-    .scary-highlight { color: red; font-family:'Creepster',cursive; font-size:1.2em; text-decoration: underline; }
+    .scary-highlight { color: red; font-family: 'Creepster', cursive; font-size: 1.2em; text-decoration: underline; }
 
     /* Output box */
-    #output { border:1px solid #ccc; padding:10px; min-height:50px; white-space: pre-wrap; margin-top:20px; }
-    textarea { width:100%; box-sizing:border-box; font-size:16px; }
-    label { display:block; margin-top:10px; margin-bottom:5px; }
-    #teachingArea { display:none; margin-top:10px; background-color:#e0ffe0; padding:10px; border-radius:10px; }
+    #output { border: 1px solid #ccc; padding: 10px; min-height: 50px; white-space: pre-wrap; margin-top: 20px; }
+    textarea { width: 100%; box-sizing: border-box; font-size: 16px; }
+    label { display: block; margin-top: 10px; margin-bottom: 5px; }
+    #teachingArea { display: none; margin-top: 10px; background-color: #e0ffe0; padding: 10px; border-radius: 10px; }
 </style>
 </head>
 <body>
@@ -47,15 +64,19 @@
     <h1>🐁🧀Gibberishmo Stiltonator🧀🐁</h1>
 </header>
 <main>
-    <div style="font-size:30px; color:lightblue;">
-        <div style="margin-left:0px;">Hello</div>
-        <div style="margin-left:0px; text-align:center;">
+    <div style="font-size: 30px; color: lightblue;">
+        <div style="margin-left: 0px;">Hello</div>
+        <div style="margin-left: 0px; text-align: center;">
             🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀 🧀
         </div>
     </div>
-    <p style="font-size:17px; color:rgb(84,76,63);">Ever wish you could read your educational texts in a more appealing way?</p>
-    <p style="font-size:17px; color:rgb(84,76,63);">Do you love Geronimo Stilton with a passion?</p>
-    <p style="font-size:17px; color:rgb(84,76,63);">
+    <p style="font-size: 17px; color: rgb(84, 76, 63);">
+        Ever wish you could read your educational texts in a more appealing way?
+    </p>
+    <p style="font-size: 17px; color: rgb(84, 76, 63);">
+        Do you love Geronimo Stilton with a passion?
+    </p>
+    <p style="font-size: 17px; color: rgb(84, 76, 63);">
         Well, this textbox will allow you to reconfigure your texts into the font of your childhood by emphasizing and highlighting key concepts just like in a classic Geronimo Stilton novel! (He'll even read it out to you!)
     </p>
 
@@ -63,7 +84,7 @@
         <input type="checkbox" id="teachingMode"> <span style="color: green;">🍎Teaching Mode - categorizes words without distracting features!</span>
     </label>
 
-    <!-- Teaching Mode word entry (above input box) -->
+    <!-- Teaching Mode word entry (now above input box) -->
     <div id="teachingArea">
         <p>Select categories to categorize:</p>
         <label><input type="checkbox" class="categoryCheckbox" value="nouns"> Nouns</label>
@@ -82,35 +103,52 @@
     <label for="inputText">Input text to Stiltonify!</label>
     <textarea id="inputText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
     <button id="goButton">Go</button>
+
     <div id="output"></div>
 
 <script>
-function isColorName(word){ const colors=['red','blue','green','yellow','pink','purple','orange','black','white','gray','grey','brown','cyan','magenta','lime','navy','teal','olive','coral','gold','silver','lightblue','lightgreen','lightgray','lightpink']; return colors.includes(word.toLowerCase()); }
+function isColorName(word){
+    const colors=['red','blue','green','yellow','pink','purple','orange','black','white','gray','grey','brown','cyan','magenta','lime','navy','teal','olive','coral','gold','silver','lightblue','lightgreen','lightgray','lightpink'];
+    return colors.includes(word.toLowerCase());
+}
 
 const wordMap = {
-    small:"<span class='small-highlight'>small</span>", tiny:"<span class='small-highlight'>tiny</span>",
-    little:"<span class='small-highlight'>little</span>", miniscule:"<span class='small-highlight'>miniscule</span>",
-    minute:"<span class='small-highlight'>minute</span>", big:"<span class='big-highlight'>big</span>",
-    huge:"<span class='big-highlight'>huge</span>", massive:"<span class='big-highlight'>massive</span>",
-    fast:"<span class='fast-highlight'>fast</span>", quick:"<span class='fast-highlight'>quick</span>",
-    rapid:"<span class='fast-highlight'>rapid</span>", scary:"<span class='scary-highlight'>scary</span>",
-    frightening:"<span class='scary-highlight'>frightening</span>", spooky:"<span class='scary-highlight'>spooky</span>"
+    small:"<span class='small-highlight'>small</span>",
+    tiny:"<span class='small-highlight'>tiny</span>",
+    little:"<span class='small-highlight'>little</span>",
+    miniscule:"<span class='small-highlight'>miniscule</span>",
+    minute:"<span class='small-highlight'>minute</span>",
+    big:"<span class='big-highlight'>big</span>",
+    huge:"<span class='big-highlight'>huge</span>",
+    massive:"<span class='big-highlight'>massive</span>",
+    fast:"<span class='fast-highlight'>fast</span>",
+    quick:"<span class='fast-highlight'>quick</span>",
+    rapid:"<span class='fast-highlight'>rapid</span>",
+    scary:"<span class='scary-highlight'>scary</span>",
+    frightening:"<span class='scary-highlight'>frightening</span>",
+    spooky:"<span class='scary-highlight'>spooky</span>"
 };
 
 function escapeRegex(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
-function highlightExtraWords(outputDiv){ if(document.getElementById('teachingMode').checked) return; let text=outputDiv.innerHTML; for(let word in wordMap){ const regex=new RegExp("\\b"+escapeRegex(word)+"\\b","gi"); text=text.replace(regex,wordMap[word]); } outputDiv.innerHTML=text; }
+function highlightExtraWords(outputDiv){
+    if(document.getElementById('teachingMode').checked) return;
+    let text=outputDiv.innerHTML;
+    for(let word in wordMap){
+        const regex=new RegExp("\\b"+escapeRegex(word)+"\\b","gi");
+        text=text.replace(regex,wordMap[word]);
+    }
+    outputDiv.innerHTML=text;
+}
 
 const categoryClassMap = {
-    nouns:'noun-style', adjectives:'adj-style', verbs:'verb-style', pronouns:'pronoun-style',
-    adverbs:'adverb-style', prepositions:'preposition-style', conjunctions:'conjunction-style'
-};
-
-// Static sets for more accurate categorization
-const staticSets = {
-    pronouns: new Set(['i','you','he','she','it','we','they','me','him','her','us','them','my','your','his','her','its','our','their']),
-    prepositions: new Set(['in','on','at','by','for','with','about','against','between','into','through','during','before','after','above','below','to','from','up','down','over','under','again','further','then']),
-    conjunctions: new Set(['and','or','but','nor','so','for','yet'])
+    nouns:'noun-style',
+    adjectives:'adj-style',
+    verbs:'verb-style',
+    pronouns:'pronoun-style',
+    adverbs:'adverb-style',
+    prepositions:'preposition-style',
+    conjunctions:'conjunction-style'
 };
 
 document.getElementById('goButton').addEventListener('click',()=>{
@@ -118,27 +156,30 @@ document.getElementById('goButton').addEventListener('click',()=>{
     if(!inputText) return;
 
     const doc=nlp(inputText);
-    const compromiseCategories={
+    const categories={
         nouns:doc.nouns().out('array').map(w=>w.toLowerCase()),
         adjectives:doc.adjectives().out('array').map(w=>w.toLowerCase()),
         verbs:doc.verbs().out('array').map(w=>w.toLowerCase()),
-        adverbs:doc.adverbs().out('array').map(w=>w.toLowerCase())
+        pronouns:doc.pronouns().out('array').map(w=>w.toLowerCase()),
+        adverbs:doc.adverbs().out('array').map(w=>w.toLowerCase()),
+        prepositions:doc.prepositions().out('array').map(w=>w.toLowerCase()),
+        conjunctions:doc.conjunctions().out('array').map(w=>w.toLowerCase())
     };
 
     const teachingMode=document.getElementById('teachingMode').checked;
-    const selectedCategories=teachingMode? Array.from(document.querySelectorAll('.categoryCheckbox:checked')).map(c=>c.value) : Object.keys(compromiseCategories).concat(['pronouns','prepositions','conjunctions']);
+    const selectedCategories=teachingMode ?
+        Array.from(document.querySelectorAll('.categoryCheckbox:checked')).map(c=>c.value)
+        : Object.keys(categories);
 
     const words=inputText.split(/\s+/);
     const styledWords=words.map(word=>{
         const clean=word.toLowerCase().replace(/[^\w]/g,'');
         if(clean==='shake'||clean==='shaky') return `<span class="shake-anim adj-style">${word}</span>`;
         if(isColorName(clean)) return `<span style="color:${clean}; font-weight:bold;">${word}</span>`;
-
         for(const cat of selectedCategories){
-            if(cat==='pronouns' && staticSets.pronouns.has(clean)) return `<span class="${categoryClassMap[cat]}">${word}</span>`;
-            if(cat==='prepositions' && staticSets.prepositions.has(clean)) return `<span class="${categoryClassMap[cat]}">${word}</span>`;
-            if(cat==='conjunctions' && staticSets.conjunctions.has(clean)) return `<span class="${categoryClassMap[cat]}">${word}</span>`;
-            if(compromiseCategories[cat] && compromiseCategories[cat].includes(clean)) return `<span class="${categoryClassMap[cat]}">${word}</span>`;
+            if(categories[cat].includes(clean)){
+                return `<span class="${categoryClassMap[cat]}">${word}</span>`;
+            }
         }
         return word;
     });
@@ -160,12 +201,28 @@ document.getElementById('goButton').addEventListener('click',()=>{
 
         fetch('https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0',{
             method:'POST',
-            headers:{ 'xi-api-key':'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1','Content-Type':'application/json' },
-            body: JSON.stringify({ text: text, model_id:'eleven_monolingual_v1' })
+            headers:{
+                'xi-api-key':'sk_72ff342a1da4efca74dff71f024ac688251da8e0e6941cc1',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({ text: text, model_id: 'eleven_monolingual_v1' })
         })
-        .then(response=>{ if(!response.ok) throw new Error('API request failed (Check your key or credits)'); return response.arrayBuffer(); })
-        .then(buffer=>{ const audio=new Audio(URL.createObjectURL(new Blob([buffer],{type:'audio/mpeg'}))); audio.play(); narrateButton.textContent='Narrate'; narrateButton.disabled=false; })
-        .catch(error=>{ console.error('Narration error:',error); alert("Error: "+error.message); narrateButton.textContent='Narrate'; narrateButton.disabled=false; });
+        .then(response=>{
+            if(!response.ok) throw new Error('API request failed (Check your key or credits)');
+            return response.arrayBuffer();
+        })
+        .then(buffer=>{
+            const audio=new Audio(URL.createObjectURL(new Blob([buffer],{type:'audio/mpeg'})));
+            audio.play();
+            narrateButton.textContent='Narrate';
+            narrateButton.disabled=false;
+        })
+        .catch(error=>{
+            console.error('Narration error:',error);
+            alert("Error: "+error.message);
+            narrateButton.textContent='Narrate';
+            narrateButton.disabled=false;
+        });
     };
     outputDiv.appendChild(narrateButton);
 });
@@ -193,7 +250,9 @@ function renderCategoryInputs(){
     });
 }
 
-document.querySelectorAll('.categoryCheckbox').forEach(cb=>{ cb.addEventListener('change', renderCategoryInputs); });
+document.querySelectorAll('.categoryCheckbox').forEach(cb=>{
+    cb.addEventListener('change', renderCategoryInputs);
+});
 
 function parseWords(text){ return text.split(',').map(w=>w.trim().toLowerCase()).filter(Boolean); }
 function getTextWordSet(){ return new Set(document.getElementById('inputText').value.toLowerCase().split(/\s+/).map(w=>w.replace(/[^\w]/g,'')).filter(Boolean)); }
@@ -204,7 +263,10 @@ document.getElementById('checkAnswers').addEventListener('click',()=>{
     document.querySelectorAll('.categoryCheckbox').forEach(cb=>{
         if(cb.checked){
             const words=parseWords(document.getElementById('input_'+cb.value).value||'');
-            words.forEach(word=>{ total++; if(set.has(word)) score++; });
+            words.forEach(word=>{
+                total++;
+                if(set.has(word)) score++;
+            });
         }
     });
     const feedback=document.getElementById('feedback');
